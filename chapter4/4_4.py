@@ -3,8 +3,11 @@ import time, functools
 def metric(func):
     @functools.wraps(func)
     def wrapper(*args, **kw):
-        print('%s excuted in %s ms'% (func.__name__, 10.24))
-        return func(*args, **kw)
+        before = time.time()
+        result = func(*args, **kw)
+        after = time.time()
+        print('%s excuted in %s ms'% (func.__name__, after - before))
+        return result
     return wrapper
 
 # 测试
